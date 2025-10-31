@@ -68,13 +68,13 @@ js-excel
     - [x] 边框
     - [x] 对齐方式
     - [x] 合并单元格
-    - [x] 冻结（禁止编辑）
+    - [x] [冻结](doc/protection.md)（单元格禁止编辑）
 - 行/列
     - [x] 指定宽/高
 - 组件
-    - [x] 复选框
-    - [x] 下拉单选
-    - [x] 下拉多选
+    - [x] [复选框](doc/component.md#复选框)
+    - [x] [下拉单选](doc/component.md#下拉单选)
+    - [x] [下拉多选](doc/component.md#下拉多选)
 - 操作
     - [x] 增/删多行
     - [x] 复制
