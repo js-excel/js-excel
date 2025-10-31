@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel</title>
+    <!--  univer  -->
+    <link rel="stylesheet" href="lib/univer-components.css"/>
+    <script src="lib/univer.iife.js"></script>
+    <!--  flex  -->
+    <link rel="stylesheet" href="lib/flex.css"/>
+    <!--  vue  -->
+    <script src="lib/vue3.js"></script>
+    <!--  ele  -->
+    <link rel="stylesheet" href="lib/ele.css"/>
+    <script src="lib/ele.js"></script>
+    <!--  axios  -->
+    <script src="lib/axios.js"></script>
+    <style>
+        html,
+        body,
+        #app {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .full {
+            width: 100%;
+            height: 100%;
+        }
+
+        .auto-height {
+            height: 100%;
+        }
+
+        .fragment {
+            padding: 20px 10px;
+        }
+
+        .btn {
+            width: 150px;
+            margin: 0px 5px;
+        }
+
+        .logo {
+            width: 150px;
+            height: 30px;
+        }
+
+        #excel {
+            width: 100%;
+            height: calc(100% - 100px);
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="flex direction-row full">
+        <div class="flex-item fragment">
+            <el-card class="auto-height" body-style="height: 100%">
+                <template #header>
+                    <div class="flex direction-row-reverse">
+                        <el-button type="primary" class="btn" @click="upload">导入</el-button>
+                        <el-button type="primary" class="btn" @click="load">加载数据</el-button>
+                    </div>
+                </template>
+                <div id="excel"></div>
+            </el-card>
+        </div>
+        <div class="flex-item fragment">
+            <el-card class="auto-height" body-style="height: 100%">
+                <template #header>
+                    <img class="logo" src="https://element-plus.org/images/element-plus-logo.svg"
+                         alt="Element Plus Logo"/>
+                </template>
+                <el-table :data="tableData" border style="height: calc(100% - 110px)">
+                    <el-table-column prop="name" label="姓名"></el-table-column>
+                    <el-table-column prop="gender" label="性别"></el-table-column>
+                    <el-table-column prop="phone" label="手机号"></el-table-column>
+                    <el-table-column prop="job" label="岗位"></el-table-column>
+                    <el-table-column prop="enable" label="是否启用">
+                        <template #default="scope">
+                            <el-switch v-model="scope.row.enable"
+                                       style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"/>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </el-card>
+        </div>
+    </div>
+</div>
+<script>
+    const uni = {
+        api: null
+    }
+    const app = Vue.createApp({
+        async mounted() {
+            uni.api = Univer.createInstance('excel');
+            const {status, data} = await axios.get("/template")
+            console.log(data)
+            uni.api.update(data);
+        },
+        data() {
+            return {
+                tableData: []
+            }
+        },
+        methods: {
+            async load() {
+                const {status, data} = await axios.get("/sample")
+                console.log("load", data)
+                uni.api.update(data)
+            },
+            async upload() {
+                const snapshot = uni.api.snapshot()
+                console.log("snapshot", snapshot)
+                const {status, data} = await axios.post("/importData", snapshot)
+                console.log("upload", data)
+                uni.api.update(data.workbook)
+                data.table.forEach(e => {
+                    e.enable = e.enable == 1
+                })
+                this.tableData = data.table
+            }
+        }
+    })
+    app.use(ElementPlus)
+    app.mount('#app')
+</script>
+</body>
+</html>
