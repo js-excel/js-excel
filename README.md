@@ -2,14 +2,23 @@
 
 # 简介
 
-js-excel是一个在线excel数据导入、导出的框架。
+js-excel是一个在线excel数据导入、导出的框架
 
 # 优点
 
 - 支持在web页面上直接编辑数据上传后端
-- 简化了office编辑数据再上传和下载报错信息的繁琐流程
-- js-excel所有流程在web界面完成，及时反馈数据导入结果
+- 简化了office文件编辑数据再上传和下载报错信息的繁琐流程
+- js-excel所有流程在web界面完成，web上直接反馈数据导入结果
 - 可直接复制粘贴office中的数据到web中
+
+# 依赖引用
+```xml
+<dependency>
+  <groupId>io.jaspercloud.excel</groupId>
+  <artifactId>js-excel</artifactId>
+  <version>todo</version>
+</dependency>
+```
 
 ## 纯前端演示demo
 
