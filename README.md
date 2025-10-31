@@ -12,11 +12,13 @@ js-excel是一个在线excel数据导入、导出的框架
 - 可直接复制粘贴office中的数据到web中
 
 # 依赖引用
+
 ```xml
+
 <dependency>
-  <groupId>io.jaspercloud.excel</groupId>
-  <artifactId>js-excel</artifactId>
-  <version>todo</version>
+    <groupId>io.jaspercloud.excel</groupId>
+    <artifactId>js-excel</artifactId>
+    <version>todo</version>
 </dependency>
 ```
 
@@ -56,27 +58,27 @@ js-excel
 ## excel支持
 
 - 单元格
-    - 前景色
-    - 背景色
-    - 字号
-    - 加粗
-    - 倾斜
-    - 下划线
-    - 删除线
-    - 边框
-    - 对齐方式
-    - 合并单元格
-    - 冻结（禁止编辑）
+    - [x] 前景色
+    - [x] 背景色
+    - [x] 字号
+    - [x] 加粗
+    - [x] 倾斜
+    - [x] 下划线
+    - [x] 删除线
+    - [x] 边框
+    - [x] 对齐方式
+    - [x] 合并单元格
+    - [x] 冻结（禁止编辑）
 - 行/列
-    - 指定宽/高
+    - [x] 指定宽/高
 - 组件
-    - 复选框
-    - 下拉单选
-    - 下拉多选
+    - [x] 复选框
+    - [x] 下拉单选
+    - [x] 下拉多选
 - 操作
-    - 增/删多行
-    - 复制
-    - 粘贴
-    - 过滤 todo
+    - [x] 增/删多行
+    - [x] 复制
+    - [x] 粘贴
+    - [ ] 过滤
 - 表格
-    - 隐藏表格
+    - [x] 隐藏表格
