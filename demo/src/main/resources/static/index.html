@@ -25,6 +25,11 @@
             padding: 0;
         }
 
+        #excel {
+            width: 100%;
+            height: calc(100% - 100px);
+        }
+
         .full {
             width: 100%;
             height: 100%;
@@ -48,9 +53,8 @@
             height: 30px;
         }
 
-        #excel {
-            width: 100%;
-            height: calc(100% - 100px);
+        .tag {
+            margin: 0px 2px;
         }
     </style>
 </head>
@@ -79,6 +83,12 @@
                     <el-table-column prop="gender" label="性别"></el-table-column>
                     <el-table-column prop="phone" label="手机号"></el-table-column>
                     <el-table-column prop="job" label="岗位"></el-table-column>
+                    <el-table-column prop="systems" label="授权系统">
+                        <template #default="scope">
+                            <el-tag class="tag" type="primary" v-for="(item,index) in scope.row.systems">{{item}}
+                            </el-tag>
+                        </template>
+                    </el-table-column>
                     <el-table-column prop="enable" label="是否启用">
                         <template #default="scope">
                             <el-switch v-model="scope.row.enable"
@@ -120,7 +130,13 @@
                 uni.api.update(data.workbook)
                 data.table.forEach(e => {
                     e.enable = e.enable == 1
+                    if (e.systems) {
+                        e.systems = e.systems.split(",")
+                    } else {
+                        e.systems = []
+                    }
                 })
+                console.log("table", data.table)
                 this.tableData = data.table
             }
         }

@@ -29,7 +29,8 @@ public class DataLoader {
             userInfo.setGender(next.get(1));
             userInfo.setPhone(next.get(2));
             userInfo.setJob(next.get(3));
-            userInfo.setEnable(Integer.parseInt(next.get(4)));
+            userInfo.setSystems(next.get(4));
+            userInfo.setEnable(Integer.parseInt(next.get(5)));
             list.add(userInfo);
         }
         return list;

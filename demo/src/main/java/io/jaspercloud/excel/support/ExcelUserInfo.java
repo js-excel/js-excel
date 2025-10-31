@@ -32,11 +32,15 @@ public class ExcelUserInfo {
     @ExcelProperty(index = 3)
     private String job;
 
-    @ExcelPropertyName("是否启用")
+    @ExcelPropertyName("授权系统")
     @ExcelProperty(index = 4)
+    private String systems;
+
+    @ExcelPropertyName("是否启用")
+    @ExcelProperty(index = 5)
     private Integer enable;
 
     @ExcelPropertyName("结果")
-    @ExcelProperty(index = 5)
+    @ExcelProperty(index = 6)
     private String msg;
 }

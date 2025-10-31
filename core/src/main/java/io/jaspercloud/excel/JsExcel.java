@@ -22,6 +22,12 @@ public class JsExcel {
         this.workbook = workbook;
     }
 
+    public UniverWorkbook render(Plugin plugin) {
+        UniverWorkbook univerWorkbook = render();
+        plugin.run(univerWorkbook);
+        return univerWorkbook;
+    }
+
     public UniverWorkbook render() {
         UniverWorkbook univerWorkbook = new UniverWorkbook();
         for (int s = 0; s < workbook.getNumberOfSheets(); s++) {
@@ -43,6 +49,13 @@ public class JsExcel {
             univerWorkbook.addSheets(univerSheet);
         }
         return univerWorkbook;
+    }
+
+    public void parse(UniverWorkbook univerWorkbook) {
+        for (UniverSheet univerSheet : univerWorkbook.getSheets().values()) {
+            XSSFSheet sheet = workbook.createSheet(univerSheet.getName());
+            parseSheet(univerSheet, sheet);
+        }
     }
 
     private void reCalcCellStyle(UniverWorkbook univerWorkbook, UniverSheet univerSheet) {
@@ -311,13 +324,6 @@ public class JsExcel {
             borderData.setB(borderStyleData);
         }
         univerStyle.setBd(borderData);
-    }
-
-    public void parse(UniverWorkbook univerWorkbook) {
-        for (UniverSheet univerSheet : univerWorkbook.getSheets().values()) {
-            XSSFSheet sheet = workbook.createSheet(univerSheet.getName());
-            parseSheet(univerSheet, sheet);
-        }
     }
 
     private void parseSheet(UniverSheet univerSheet, XSSFSheet sheet) {
