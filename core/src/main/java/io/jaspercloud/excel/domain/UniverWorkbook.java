@@ -26,6 +26,7 @@ public class UniverWorkbook {
     private Map<String, UniverStyle> styles = new HashMap<>();
     private Map<String, List<UniverProtectionRange>> protectionRanges = new HashMap<>();
     private Map<String, List<UniverComponent>> components = new HashMap<>();
+    private Map<String, UniverSheetFilter> filters = new HashMap<>();
 
     public XSSFWorkbook export() {
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -51,6 +52,10 @@ public class UniverWorkbook {
     public void addProtectionRange(String sheetId, UniverProtectionRange range) {
         List<UniverProtectionRange> rangeList = protectionRanges.computeIfAbsent(sheetId, k -> new ArrayList<>());
         rangeList.add(range);
+    }
+
+    public void addSheetFilter(String sheetId, UniverSheetFilter filter) {
+        filters.put(sheetId, filter);
     }
 
     public void addProtectionRange(String sheetName, String range) {

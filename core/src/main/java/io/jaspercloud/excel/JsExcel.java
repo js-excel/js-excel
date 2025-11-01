@@ -41,6 +41,7 @@ public class JsExcel {
             processRows(workbook, univerWorkbook, sheet, columnCount, univerSheet);
             processCellMergeRange(sheet, univerSheet);
             processFreezeRow(sheet, univerSheet);
+            processFilters(univerWorkbook, sheet, s);
             univerSheet.setRowCount(sheet.getPhysicalNumberOfRows() + 30);
             if (columnCount > 0) {
                 univerSheet.setColumnCount(columnCount);
@@ -56,6 +57,20 @@ public class JsExcel {
             XSSFSheet sheet = workbook.createSheet(univerSheet.getName());
             parseSheet(univerSheet, sheet);
         }
+    }
+
+    private void processFilters(UniverWorkbook univerWorkbook, XSSFSheet sheet, int sheetId) {
+        if (!sheet.getCTWorksheet().isSetAutoFilter()) {
+            return;
+        }
+        CellRangeAddress cellAddresses = CellRangeAddress.valueOf(sheet.getCTWorksheet().getAutoFilter().getRef());
+        cellAddresses.setLastRow(65535);
+        UniverSheetFilter filter = new UniverSheetFilter();
+        filter.setStartRow(cellAddresses.getFirstRow());
+        filter.setEndRow(cellAddresses.getLastRow());
+        filter.setStartColumn(cellAddresses.getFirstColumn());
+        filter.setEndColumn(cellAddresses.getLastColumn());
+        univerWorkbook.addSheetFilter(String.valueOf(sheetId), filter);
     }
 
     private void reCalcCellStyle(UniverWorkbook univerWorkbook, UniverSheet univerSheet) {
