@@ -45,7 +45,13 @@
 
         .btn {
             width: 150px;
+            height: 40px;
             margin: 0px 5px;
+        }
+
+        .js-logo {
+            width: 100px;
+            height: 60px;
         }
 
         .logo {
@@ -64,9 +70,14 @@
         <div class="flex-item fragment">
             <el-card class="auto-height" body-style="height: 100%">
                 <template #header>
-                    <div class="flex direction-row-reverse">
-                        <el-button type="primary" class="btn" @click="upload">导入</el-button>
-                        <el-button type="primary" class="btn" @click="load">加载数据</el-button>
+                    <div class="flex align-center" style="height: 50px">
+                        <div>
+                            <img class="js-logo" src="img/icon-small.png" alt="">
+                        </div>
+                        <div class="flex-item flex direction-row-reverse">
+                            <el-button type="primary" class="btn" @click="upload">导入</el-button>
+                            <el-button type="primary" class="btn" @click="load">加载数据</el-button>
+                        </div>
                     </div>
                 </template>
                 <div id="excel"></div>
