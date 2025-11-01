@@ -1,11 +1,15 @@
 
+<center>
+
 ![](doc/img/icon.png)
 
-# js-excel
+</center>
 
 # 简介
 
 js-excel是一个在线excel数据导入、导出的框架
+
+![](doc/img/snapshot.png)
 
 # 优点
 
