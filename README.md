@@ -86,6 +86,6 @@ js-excel
     - [x] 增/删多行
     - [x] 复制
     - [x] 粘贴
-    - [ ] 过滤
+    - [x] [过滤](doc/filter.md)
 - 表格
     - [x] 隐藏sheet表格
