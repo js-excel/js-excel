@@ -1,5 +1,5 @@
 
-![](img/ico.png)
+![](doc/img/icon.png)
 
 # js-excel
 
