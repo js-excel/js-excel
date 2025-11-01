@@ -27,7 +27,7 @@
 
         #excel {
             width: 100%;
-            height: calc(100% - 100px);
+            height: calc(100% - 120px);
         }
 
         .full {
@@ -86,10 +86,12 @@
         <div class="flex-item fragment">
             <el-card class="auto-height" body-style="height: 100%">
                 <template #header>
-                    <img class="logo" src="https://element-plus.org/images/element-plus-logo.svg"
-                         alt="Element Plus Logo"/>
+                    <div class="flex align-center" style="height: 50px">
+                        <img class="logo" src="https://element-plus.org/images/element-plus-logo.svg"
+                             alt="Element Plus Logo"/>
+                    </div>
                 </template>
-                <el-table :data="tableData" border style="height: calc(100% - 110px)">
+                <el-table :data="tableData" border style="height: calc(100% - 120px)">
                     <el-table-column prop="name" label="姓名"></el-table-column>
                     <el-table-column prop="gender" label="性别"></el-table-column>
                     <el-table-column prop="phone" label="手机号"></el-table-column>
