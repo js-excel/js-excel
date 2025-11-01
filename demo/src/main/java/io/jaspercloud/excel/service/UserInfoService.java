@@ -32,6 +32,7 @@ public class UserInfoService {
 
     public Map<String, Object> importData(UniverWorkbook univerWorkbook) throws Exception {
         List<ExcelUserInfo> list = new ArrayList<>();
+        Set<String> phoneSet = new HashSet<>();
         JSONArray jsonArray = new JSONArray();
         Map<String, String> headers = parseHeaders(ExcelUserInfo.class);
         EasyExcel.read(new ByteArrayInputStream(univerWorkbook.exportBytes()))
@@ -54,6 +55,11 @@ public class UserInfoService {
                             data.setMsg(message);
                             return;
                         }
+                        if (phoneSet.contains(data.getPhone())) {
+                            data.setMsg("手机号重复");
+                            return;
+                        }
+                        phoneSet.add(data.getPhone());
                         data.setMsg("导入成功");
                         jsonArray.add(new JSONObject(data));
                     }
